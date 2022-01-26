@@ -64,11 +64,23 @@ gats.Perk = {
 
 gats.defineGetter(gats, 'publicServers', () => servers);
 
-gats.defineGetter(gats, 'mapWidth', () => j11);
-gats.defineGetter(gats, 'mapHeight', () => j12);
+Object.defineProperty(gats, 'mapWidth', {
+  get() {
+    return j11;
+  },
+  set(width) {
+    j11 = width;
+  },
+});
 
-gats.defineSetter(gats, 'mapWidth', (width) => (j11 = width));
-gats.defineSetter(gats, 'mapHeight', (height) => (j12 = height));
+Object.defineProperty(gats, 'mapHeight', {
+  get() {
+    return j12;
+  },
+  set(height) {
+    j12 = height;
+  },
+});
 
 gats.parsePosition = (data) => {
   return {
@@ -81,6 +93,10 @@ gats.getCurrentServer = () => {
   return RF.list[0];
 };
 
+gats.defineGetter(gats, 'currentServer', () => gats.getCurrentServer());
+
 gats.getSocket = () => {
   return gats.getCurrentServer().socket;
 };
+
+gats.defineGetter(gats, 'socket', () => gats.getSocket());
