@@ -1,5 +1,17 @@
 const gats = {};
 
+gats.defineGetter = (obj, prop, func) => {
+  Object.defineProperty(obj, prop, {
+    get: func,
+  });
+};
+
+gats.defineSetter = (obj, prop, func) => {
+  Object.defineProperty(obj, prop, {
+    set: func,
+  });
+};
+
 gats.CAPTCHA_SITEKEY = '6LenZt4ZAAAAAF-2nPKzH9111gkjBlaJCEp8UsQV';
 
 gats.Weapon = {
@@ -26,6 +38,37 @@ gats.Armor = {
   Medium: 2,
   Heavy: 3,
 };
+
+gats.Perk = {
+  NoRecoil: 0,
+  Binoculars: 1,
+  Thermal: 2,
+  Damage: 3,
+  LargeMags: 4,
+  Accuracy: 5,
+  Silencer: 6,
+  Speed: 7,
+  Range: 8,
+  Kevlar: 9,
+  Shield: 10,
+  MedKit: 11,
+  Grenade: 12,
+  Knife: 13,
+  Build: 14,
+  Camo: 15,
+  Dash: 16,
+  Gas: 17,
+  Landmine: 18,
+  Frag: 19,
+};
+
+gats.defineGetter(gats, 'publicServers', () => servers);
+
+gats.defineGetter(gats, 'mapWidth', () => j11);
+gats.defineGetter(gats, 'mapHeight', () => j12);
+
+gats.defineSetter(gats, 'mapWidth', (width) => (j11 = width));
+gats.defineSetter(gats, 'mapHeight', (height) => (j12 = height));
 
 gats.parsePosition = (data) => {
   return {
